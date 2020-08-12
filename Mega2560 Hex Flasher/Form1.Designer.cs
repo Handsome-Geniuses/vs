@@ -38,15 +38,19 @@
             this.TB_File_Path = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TB_Msg = new System.Windows.Forms.TextBox();
+            this.TB_FW = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PB_Status = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // CB_Port_Selector
             // 
+            this.CB_Port_Selector.BackColor = System.Drawing.SystemColors.Control;
             this.CB_Port_Selector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_Port_Selector.FormattingEnabled = true;
-            this.CB_Port_Selector.Location = new System.Drawing.Point(35, 38);
+            this.CB_Port_Selector.Location = new System.Drawing.Point(40, 38);
             this.CB_Port_Selector.Name = "CB_Port_Selector";
-            this.CB_Port_Selector.Size = new System.Drawing.Size(76, 21);
+            this.CB_Port_Selector.Size = new System.Drawing.Size(94, 21);
             this.CB_Port_Selector.TabIndex = 0;
             // 
             // BTN_Browse
@@ -65,13 +69,13 @@
             // 
             // BTN_Begin_Flash
             // 
-            this.BTN_Begin_Flash.Location = new System.Drawing.Point(117, 37);
+            this.BTN_Begin_Flash.Location = new System.Drawing.Point(198, 163);
             this.BTN_Begin_Flash.Name = "BTN_Begin_Flash";
-            this.BTN_Begin_Flash.Size = new System.Drawing.Size(161, 23);
+            this.BTN_Begin_Flash.Size = new System.Drawing.Size(80, 23);
             this.BTN_Begin_Flash.TabIndex = 4;
             this.BTN_Begin_Flash.Text = "Flash";
             this.BTN_Begin_Flash.UseVisualStyleBackColor = true;
-            this.BTN_Begin_Flash.Click += new System.EventHandler(this.button1_Click);
+            this.BTN_Begin_Flash.Click += new System.EventHandler(this.BTN_Flash_Click);
             // 
             // cmd
             // 
@@ -85,19 +89,18 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(88, 99);
+            this.button2.Location = new System.Drawing.Point(173, 102);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
             this.button2.Text = "s";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // LB_Port
             // 
             this.LB_Port.BackColor = System.Drawing.SystemColors.Window;
-            this.LB_Port.Location = new System.Drawing.Point(3, 38);
+            this.LB_Port.Location = new System.Drawing.Point(8, 38);
             this.LB_Port.Name = "LB_Port";
             this.LB_Port.Size = new System.Drawing.Size(36, 21);
             this.LB_Port.TabIndex = 6;
@@ -111,11 +114,12 @@
             this.TB_File_Path.Size = new System.Drawing.Size(183, 20);
             this.TB_File_Path.TabIndex = 7;
             this.TB_File_Path.WordWrap = false;
+            this.TB_File_Path.TextChanged += new System.EventHandler(this.TB_File_Path_TextChanged);
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.SystemColors.Window;
-            this.label1.Location = new System.Drawing.Point(3, 9);
+            this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 21);
             this.label1.TabIndex = 8;
@@ -133,12 +137,42 @@
             this.TB_Msg.Size = new System.Drawing.Size(266, 92);
             this.TB_Msg.TabIndex = 9;
             // 
+            // TB_FW
+            // 
+            this.TB_FW.Location = new System.Drawing.Point(173, 38);
+            this.TB_FW.Name = "TB_FW";
+            this.TB_FW.ReadOnly = true;
+            this.TB_FW.Size = new System.Drawing.Size(105, 20);
+            this.TB_FW.TabIndex = 10;
+            this.TB_FW.WordWrap = false;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.SystemColors.Window;
+            this.label2.Location = new System.Drawing.Point(141, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 21);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "F/W:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PB_Status
+            // 
+            this.PB_Status.Location = new System.Drawing.Point(11, 163);
+            this.PB_Status.Name = "PB_Status";
+            this.PB_Status.Size = new System.Drawing.Size(181, 23);
+            this.PB_Status.TabIndex = 12;
+            this.PB_Status.Value = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(286, 164);
+            this.ClientSize = new System.Drawing.Size(290, 191);
+            this.Controls.Add(this.PB_Status);
+            this.Controls.Add(this.TB_FW);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.TB_File_Path);
             this.Controls.Add(this.CB_Port_Selector);
             this.Controls.Add(this.label1);
@@ -169,6 +203,9 @@
         private System.Windows.Forms.TextBox TB_File_Path;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TB_Msg;
+        private System.Windows.Forms.TextBox TB_FW;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ProgressBar PB_Status;
     }
 }
 

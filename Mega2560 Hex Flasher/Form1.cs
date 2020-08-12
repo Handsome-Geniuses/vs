@@ -59,21 +59,12 @@ namespace Mega2560_Hex_Flasher
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BTN_Flash_Click(object sender, EventArgs e)
         {
-            //check if path selected
-            if (TB_File_Path.Text == "")
-            {
-                TB_Msg.AppendText(DateTime.Now.ToString("[HH:mm:ss] ") + "No file selected!" + Environment.NewLine);
-                return;
-            }
-            //check if port selected
-            if (CB_Port_Selector.Text == "")
-            {
-                //please select com
-                TB_Msg.AppendText(DateTime.Now.ToString("[HH:mm:ss] ")+"No COM port selected!"+Environment.NewLine);
-                return;
-            }
+            //if (!FlashPrereq())
+            //{
+            //    return;
+            //}
             //command for cmd
             String command = "jl_flasher -Cjl_flasher.conf -cwiring -pm2560 -q -D -Uflash:w:"+ TB_File_Path.Text+":i -P"+ CB_Port_Selector.Text+" & exit";
             String temp = "";
@@ -109,11 +100,58 @@ namespace Mega2560_Hex_Flasher
             }
             cmd.WaitForExit();
         }
+        private void TB_File_Path_TextChanged(object sender, EventArgs e)
+        {
+            if (FileFWCheck() == "WRONG")
+            {
+                TB_FW.Text = " ERROR: Wrong file";
+            }
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.Write(cmdout);
-            System.Diagnostics.Debug.Write("==================================================================================");
+            System.Diagnostics.Debug.Write("==================================================================================\n");
+            FileFWCheck();
+        }
+
+        private String FileFWCheck()
+        {
+            String last = File.ReadLines(OFD_FileOpen.FileName).Last();
+            
+            if (last.Contains("JLUAFWv"))
+            {
+                String ret = last.Substring(last.Length - 4, 4);
+                TB_FW.Text = " "+ret;
+                return ret;
+            }
+            return "WRONG";
+        }
+
+        bool FlashPrereq()
+        {
+            if (TB_File_Path.Text == "")
+            {
+                TB_Msg.AppendText(DateTime.Now.ToString("[HH:mm:ss] ") + "No file selected!" + Environment.NewLine);
+                return false;
+            }
+            //check if port selected
+            if (CB_Port_Selector.Text == "")
+            {
+                //please select com
+                TB_Msg.AppendText(DateTime.Now.ToString("[HH:mm:ss] ") + "No COM port selected!" + Environment.NewLine);
+                return false;
+            }
+            if (FileFWCheck() != "WRONG")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        void StartFlash()
+        {
+            String command = "jl_flasher -Cjl_flasher.conf -cwiring -pm2560 -q -D -Uflash:w:" + TB_File_Path.Text + ":i -P" + CB_Port_Selector.Text + " & exit";
         }
     }
 }
