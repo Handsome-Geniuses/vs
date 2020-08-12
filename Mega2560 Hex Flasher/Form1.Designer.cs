@@ -48,9 +48,9 @@
             this.CB_Port_Selector.BackColor = System.Drawing.SystemColors.Control;
             this.CB_Port_Selector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_Port_Selector.FormattingEnabled = true;
-            this.CB_Port_Selector.Location = new System.Drawing.Point(40, 38);
+            this.CB_Port_Selector.Location = new System.Drawing.Point(35, 38);
             this.CB_Port_Selector.Name = "CB_Port_Selector";
-            this.CB_Port_Selector.Size = new System.Drawing.Size(94, 21);
+            this.CB_Port_Selector.Size = new System.Drawing.Size(99, 21);
             this.CB_Port_Selector.TabIndex = 0;
             // 
             // BTN_Browse
